@@ -1,0 +1,55 @@
+{
+  "Vehicle": {
+    "children": {
+      "Diagnostics": {
+        "children": {
+          "Request": {
+            "children": {
+              "ReadDTCs": {
+                "datatype": "boolean",
+                "description": "Trigger to request reading of DTCs.",
+                "type": "actuator",
+                "uuid": "c1234567abcd89ef0123456789abcdef",
+                "name": "Vehicle.Diagnostics.Request.ReadDTCs",
+                "id": "req_read_dtcs_001"
+              }
+            },
+            "description": "Diagnostics request signals",
+            "type": "branch",
+            "uuid": "b2234567abcd89ef0123456789abcdef",
+            "name": "Vehicle.Diagnostics.Request",
+            "id": "diag_request_branch"
+          },
+          "Response": {
+            "children": {
+              "ActiveDTCs": {
+                "datatype": "string",
+                "description": "Active Diagnostic Trouble Codes response",
+                "type": "sensor",
+                "uuid": "d3234567abcd89ef0123456789abcdef",
+                "name": "Vehicle.Diagnostics.Response.ActiveDTCs",
+                "id": "resp_active_dtcs_001"
+              }
+            },
+            "description": "Diagnostics response signals",
+            "type": "branch",
+            "uuid": "e4234567abcd89ef0123456789abcdef",
+            "name": "Vehicle.Diagnostics.Response",
+            "id": "diag_response_branch"
+          }
+        },
+        "description": "Diagnostics related signals",
+        "type": "branch",
+        "uuid": "f5234567abcd89ef0123456789abcdef",
+        "name": "Vehicle.Diagnostics",
+        "id": "vehicle_diag_branch"
+      }
+    },
+    "description": "Top level vehicle branch",
+    "type": "branch",
+    "uuid": "a6234567abcd89ef0123456789abcdef",
+    "name": "Vehicle",
+    "id": "vehicle_root_branch"
+  }
+}
+
