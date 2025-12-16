@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vehicle Speed Dashboard</title>
+ 
+  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+ 
+  <!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Rajdhani:wght@500;600;700&display=swap%22 rel="stylesheet">
+ 
+  <style>
+
+    .road {
+
+      position: absolute;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      overflow: hidden;
+
+      z-index: 1;
+
+    }
+ 
+    .road-perspective {
+
+      position: absolute;
+
+      bottom: -28%;
+
+      left: 50%;
+
+      width: 140%;
+
+      height: 160%;
+
+      transform: translateX(-50%) perspective(700px) rotateX(62deg);
+
+      -webkit-mask-image: linear-gradient(
+
+        to top,
+
+        black 0%,
+
+        black 55%,
+
+        rgba(0,0,0,0.4) 75%,
+
+        transparent 100%
+
+      );
+
+      mask-image: linear-gradient(
+
+        to top,
+
+        black 0%,
+
+        black 55%,
+
+        rgba(0,0,0,0.4) 75%,
+
+        transparent 100%
+
+      );
+
+    }
+ 
+    .lane {
+
+      position: absolute;
+
+      top: 0;
+
+      bottom: 0;
+
+    }
+ 
+    .lane.solid {
+
+      width: 12px;
+
+      background: linear-gradient(
+
+        to bottom,
+
+        rgba(37,99,235,0.9),
+
+        rgba(59,130,246,1)
+
+      );
+
+      filter: drop-shadow(0 0 18px rgba(59,130,246,1));
+
+    }
+ 
+    .lane.dashed {
+
+      width: 5px;
+
+      background-image: repeating-linear-gradient(
+
+        to bottom,
+
+        #ffffff 0px,
+
+        #ffffff 26px,
+
+        transparent 26px,
+
+        transparent 54px
+
+      );
+
+      animation: dashMove 0.35s linear infinite;
+
+    }
+ 
+    .left-solid  { left: 41%; }
+
+    .left-dashed { left: 42.5%; }
+
+    .right-solid { right: 41%; }
+
+    .right-dashed { right: 42.5%; }
+ 
+    @keyframes dashMove {
+
+      from { background-position-y: 0; }
+
+      to   { background-position-y: 120px; }
+
+    }
+ 
+    body {
+
+      background: radial-gradient(circle at 50% 0%, #1e3a8a 0%, #0f172a 55%, #020617 100%);
+
+      overflow: hidden;
+
+      font-family: "Poppins", sans-serif;
+
+    }
+ 
+    .font-speed {
+
+      font-family: 'Rajdhani', sans-serif;
+
+      letter-spacing: 1.5px;
+
+      font-weight: 700;
+
+    }
+ 
+    .vehicle-speed-text {
+
+      font-weight: 700;
+
+      font-size: 1.8rem;
+
+      color: white;
+
+    }
+ 
+    @media (min-width: 768px) {
+
+      .vehicle-speed-text {
+
+        font-size: 2.2rem;
+
+      }
+
+    }
+</style>
+</head>
+ 
+<body class="min-h-screen w-full relative text-white">
+ 
+  <!-- ROAD -->
+<div class="road">
+<div class="road-perspective">
+<div class="lane solid left-solid"></div>
+<div class="lane dashed left-dashed"></div>
+<div class="lane solid right-solid"></div>
+<div class="lane dashed right-dashed"></div>
+</div>
+</div>
+ 
+  <!-- CONTENT -->
+<div class="relative z-10 flex flex-col items-center pt-4 gap-3">
+ 
+    <img
+
+      src="https://raw.githubusercontent.com/8088390473/myproject/main/image%20(1).png"
+
+      class="h-40 md:h-56 drop-shadow-[0_0_35px_rgba(59,130,246,0.45)]"
+
+      alt="TATA"
+
+    />
+ 
+    <!-- VEHICLE SPEED TEXT MOVED LEFT -->
+<div class="flex items-center gap-3 -mt-3 -translate-x-3">
+<i data-lucide="gauge" class="w-8 h-8 text-cyan-300"></i>
+<h1 class="vehicle-speed-text">VEHICLE SPEED</h1>
+</div>
+ 
+    <!-- SPEED VALUE -->
+<div class="flex items-baseline gap-4 mt-2">
+<div
+
+        id="speed_value"
+
+        class="text-6xl md:text-7xl font-speed text-transparent bg-clip-text
+
+               bg-gradient-to-b from-white via-blue-200 to-blue-500
+
+               translate-x-2">
+
+        0
+</div>
+<span class="text-lg">km/h</span>
+</div>
+ 
+    <div class="mt-8">
+<img
+
+        src="https://raw.githubusercontent.com/Prakash11421/test/master/car-verical-removebg-preview.png"
+
+        class="w-full max-w-3xl"
+
+        alt="Car"
+
+      />
+</div>
+ 
+  </div>
+ 
+  <script>
+
+    lucide.createIcons();
+ 
+    const speedEl = document.getElementById('speed_value');
+
+    let speed = 0;
+ 
+    setInterval(() => {
+
+      speed += Math.floor(Math.random() * 5);
+
+      if (speed > 120) speed = 0;
+
+      speedEl.textContent = speed;
+
+    }, 500);
+</script>
+ 
+</body>
+</html>
+ 
